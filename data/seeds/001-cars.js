@@ -1,13 +1,32 @@
-
-exports.seed = function(knex) {
+exports.seed = async function (knex) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
-    .then(function () {
+  await knex('car_dealer')
+    .truncate()
+    .then(async function () {
       // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
+      await knex('car_dealer').insert([
+        {
+          VIN: '12f7398adadafdad',
+          make: 'ford',
+          model: 'escort',
+          milage: '123525',
+          transmissionType: 'auto',
+        },
+        {
+          VIN: '345ada454adfadfa',
+          make: 'chevolet',
+          model: 's10',
+          milage: '245103',
+          transmissionType: 'standard',
+          titlestatus: 'salvage',
+        },
+        {
+          VIN: 'fad74ada131adfad',
+          make: 'kia',
+          model: 'sorento',
+          milage: '54213',
+          titlestatus: 'clear',
+        },
       ]);
     });
 };
